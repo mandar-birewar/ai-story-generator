@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NeuroTales AI</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        min-height: 100vh;
+        overflow-x: hidden;
+        background: #050816;
+        color: white;
+        position: relative;
+      }
+
+      .bg {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: -2;
+      }
+
+      .circle {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(90px);
+        animation: float 12s infinite ease-in-out;
+      }
+
+      .c1 {
+        width: 350px;
+        height: 350px;
+        background: #7c3aed;
+        top: 5%;
+        left: 5%;
+      }
+
+      .c2 {
+        width: 300px;
+        height: 300px;
+        background: #2563eb;
+        bottom: 10%;
+        right: 10%;
+        animation-delay: 2s;
+      }
+
+      .c3 {
+        width: 250px;
+        height: 250px;
+        background: #06b6d4;
+        top: 40%;
+        left: 45%;
+        animation-delay: 4s;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0px) translateX(0px);
+        }
+        50% {
+          transform: translateY(-30px) translateX(20px);
+        }
+        100% {
+          transform: translateY(0px) translateX(0px);
+        }
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 25px 8%;
+        backdrop-filter: blur(15px);
+        background: rgba(255, 255, 255, 0.05);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .logo {
+        font-family: "Orbitron", sans-serif;
+        font-size: 30px;
+        color: #60a5fa;
+        letter-spacing: 2px;
+      }
+
+      .tag {
+        color: #94a3b8;
+        font-size: 14px;
+      }
+
+      .hero {
+        text-align: center;
+        padding: 60px 20px 30px;
+      }
+
+      .hero h1 {
+        font-size: 65px;
+        font-family: "Orbitron", sans-serif;
+        background: linear-gradient(to right, #60a5fa, #a78bfa, #22d3ee);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 20px;
+      }
+
+      .hero p {
+        color: #cbd5e1;
+        max-width: 750px;
+        margin: auto;
+        line-height: 1.8;
+        font-size: 18px;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        width: 85%;
+        margin: 50px auto;
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border-radius: 25px;
+        padding: 30px;
+        transition: 0.4s;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card:hover {
+        transform: translateY(-10px) scale(1.03);
+        box-shadow: 0 0 25px rgba(96, 165, 250, 0.3);
+      }
+
+      .card h2 {
+        margin-bottom: 15px;
+        font-size: 28px;
+      }
+
+      .card p {
+        color: #cbd5e1;
+        line-height: 1.7;
+      }
+
+      .generator {
+        width: 85%;
+        max-width: 1000px;
+        margin: 30px auto 80px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(20px);
+        border-radius: 30px;
+        padding: 40px;
+      }
+
+      .generator h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 35px;
+        color: #93c5fd;
+      }
+
+      textarea {
+        width: 100%;
+        min-height: 180px;
+        border: none;
+        outline: none;
+        resize: none;
+        padding: 20px;
+        border-radius: 20px;
+        background: #0f172a;
+        color: white;
+        font-size: 17px;
+        line-height: 1.6;
+      }
+
+      textarea::placeholder {
+        color: #64748b;
+      }
+
+      .btn-box {
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      button {
+        padding: 15px 40px;
+        border: none;
+        border-radius: 50px;
+        font-size: 18px;
+        cursor: pointer;
+        background: linear-gradient(to right, #2563eb, #7c3aed);
+        color: white;
+        font-weight: 600;
+        transition: 0.4s;
+      }
+
+      button:hover {
+        transform: scale(1.08);
+        box-shadow: 0 0 30px rgba(124, 58, 237, 0.5);
+      }
+
+      .output {
+        margin-top: 40px;
+        background: #020617;
+        border-left: 5px solid #60a5fa;
+        padding: 30px;
+        border-radius: 20px;
+        line-height: 2;
+        color: #e2e8f0;
+        white-space: pre-wrap;
+      }
+
+      footer {
+        text-align: center;
+        padding: 25px;
+        color: #64748b;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 42px;
+        }
+
+        .generator {
+          padding: 25px;
+        }
+
+        .navbar {
+          flex-direction: column;
+          gap: 10px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="bg">
+      <div class="circle c1"></div>
+      <div class="circle c2"></div>
+      <div class="circle c3"></div>
+    </div>
+
+    <div class="navbar">
+      <div class="logo">NeuroTales AI</div>
+      <div class="tag">Powered by GPT-2</div>
+    </div>
+
+    <section class="hero">
+      <h1>Generate Stories Beyond Imagination</h1>
+
+      <p>
+        Create futuristic stories, horror tales, and motivational paragraphs
+        instantly using AI.
+      </p>
+    </section>
+
+    <section class="cards">
+      <div class="card">
+        <h2>🚀 Space Story</h2>
+        <p>Generate futuristic adventures and sci-fi stories.</p>
+      </div>
+
+      <div class="card">
+        <h2>👻 Horror Story</h2>
+        <p>Create creepy paranormal and haunted stories.</p>
+      </div>
+
+      <div class="card">
+        <h2>💡 Motivation</h2>
+        <p>Generate powerful motivational paragraphs instantly.</p>
+      </div>
+    </section>
+
+    <section class="generator">
+      <h2>AI Story Generator</h2>
+
+      <form method="POST">
+        <textarea
+          name="prompt"
+          placeholder="Enter your creative prompt..."
+        ></textarea>
+
+        <div class="btn-box">
+          <button type="submit">Generate Story</button>
+        </div>
+      </form>
+
+      {% if output %}
+
+      <div class="output">
+        <h3>✨ Generated Output</h3>
+
+        <br />
+
+        {{ output }}
+      </div>
+
+      {% endif %}
+    </section>
+
+    <footer>NeuroTales AI • GPT-2 Story Generator</footer>
+  </body>
+</html>
